@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showAlterDialog();
                 break;
             case R.id.btn_input:
+                //
                 showInputDialog();
                 break;
         }
