@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="sd_text_title">#000000</color>
+    <color name="sd_text_value">#555555</color>
 </resources>

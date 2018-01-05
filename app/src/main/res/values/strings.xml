@@ -2,4 +2,9 @@
     <string name="app_name">myframeworks</string>
     <string name="make_sure">确定</string>
     <string name="cancel">取消</string>
+
+    <string name="head_tipsTextView">向下拖动进行刷新</string>
+    <string name="head_lastUpdatedTextView">上次刷新  : </string>
+    <string name="pull_download">正在加载中&#8230;</string>
+    <string name="retry_updated">下拉刷新试试</string>
 </resources>

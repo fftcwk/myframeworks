@@ -15,4 +15,8 @@ public class MProgressDialog extends ProgressDialog{
     public MProgressDialog(Context context, int theme) {
         super(context, theme);
     }
+
+
+
+
 }
