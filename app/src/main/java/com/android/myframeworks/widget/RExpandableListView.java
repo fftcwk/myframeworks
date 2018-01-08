@@ -1,7 +1,6 @@
 package com.android.myframeworks.widget;
 
 import android.content.Context;
-import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -10,34 +9,37 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.myframeworks.R;
 
+
 /**
- * Created by cuiwenkai on 2018/1/5.
+ * Created by cuiwenkai on 2018/1/8.
  */
 
-public class RListView extends ListView implements AbsListView.OnScrollListener{
-    public RListView(Context context) {
+public class RExpandableListView extends ExpandableListView implements AbsListView.OnScrollListener{
+
+
+    public RExpandableListView(Context context) {
         super(context);
         init();
     }
 
-    public RListView(Context context, AttributeSet attrs) {
+    public RExpandableListView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
     }
 
-    public RListView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public RExpandableListView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
-    public RListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public RExpandableListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
     }
@@ -309,6 +311,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         setHeaderState(REFRESHING);
     }
 
+
     public void setCanRefresh(boolean canRefresh) {
         this.canRefresh = canRefresh;
     }
@@ -382,7 +385,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
             initRefreshErrorView();
         }
         if(!TextUtils.isEmpty(errorMsg)) {
-           this.errorHint = errorMsg;
+            this.errorHint = errorMsg;
         }
         errorText.setText(this.errorHint);
         addHeaderView(refreshErrorView);
@@ -393,5 +396,4 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
             removeHeaderView(refreshErrorView);
         }
     }
-
 }

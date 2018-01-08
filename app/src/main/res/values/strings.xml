@@ -3,8 +3,12 @@
     <string name="make_sure">确定</string>
     <string name="cancel">取消</string>
 
-    <string name="head_tipsTextView">向下拖动进行刷新</string>
-    <string name="head_lastUpdatedTextView">上次刷新  : </string>
-    <string name="pull_download">正在加载中&#8230;</string>
-    <string name="retry_updated">下拉刷新试试</string>
+    <string name="rlist_head_ready">向下拖动进行刷新</string>
+    <string name="rlist_head_release">松开进行刷新</string>
+    <string name="rlist_head_refreshing">正在刷新&#8230;</string>
+    <string name="rlist_footer_ready">上拉加载更多</string>
+    <string name="rlist_footer_release">松开加载更多</string>
+    <string name="rlist_footer_loading">正在加载&#8230;</string>
+    <string name="rlist_footer_nodata_default">加载完成，无更多记录</string>
+    <string name="rlist_refresh_error_default">数据更新失败，下拉刷新重试</string>
 </resources>

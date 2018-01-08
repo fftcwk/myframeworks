@@ -6,4 +6,6 @@
 
     <color name="sd_text_title">#000000</color>
     <color name="sd_text_value">#555555</color>
+
+    <color name="bill_red">#fa5b26</color>
 </resources>

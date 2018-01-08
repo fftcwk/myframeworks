@@ -22,7 +22,7 @@
             <!-- 箭头 -->
 
             <ImageView
-                android:id="@+id/head_arrowImageView"
+                android:id="@+id/img_rlist_head_arrow"
                 android:layout_width="40dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_pulltorefresh_arrow"
@@ -31,7 +31,7 @@
             <!-- 进度条 -->
 
             <ProgressBar
-                android:id="@+id/head_progressBar"
+                android:id="@+id/pb_rlist_head"
                 style="?android:attr/progressBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -51,22 +51,13 @@
             <!-- 提示 -->
 
             <TextView
-                android:id="@+id/head_tipsTextView"
+                android:id="@+id/tv_rlist_head_tips"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/head_tipsTextView"
+                android:text="@string/rlist_head_release"
                 android:textSize="15dp" />
 
-            <!-- 最近更新 -->
-
-            <TextView
-                android:id="@+id/head_lastUpdatedTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/head_lastUpdatedTextView"
-                android:textSize="12dp"
-                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 

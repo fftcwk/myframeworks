@@ -1,10 +1,14 @@
 package com.android.myframeworks;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.android.myframeworks.simple.RExpandableActivity;
+import com.android.myframeworks.simple.RListViewActivity;
+import com.android.myframeworks.widget.RExpandableListView;
 import com.android.myframeworks.widget.dialog.MAlterBuilder;
 import com.android.myframeworks.widget.dialog.MDialogController;
 import com.android.myframeworks.widget.dialog.MInputDialog;
@@ -29,8 +33,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 showAlterDialog();
                 break;
             case R.id.btn_input:
-                //
                 showInputDialog();
+                break;
+            case R.id.btn_rlistview:
+                startActivity(new Intent(this, RListViewActivity.class));
+                break;
+            case R.id.btn_rexpandable:
+                startActivity(new Intent(this, RExpandableActivity.class));
                 break;
         }
     }
