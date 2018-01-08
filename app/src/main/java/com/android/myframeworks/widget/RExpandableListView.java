@@ -91,7 +91,7 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
 
 
     private void initHeaderView() {
-        headerView = View.inflate(getContext(), R.layout.list_head, null);
+        headerView = View.inflate(getContext(), R.layout.rlist_head, null);
         arrowImage = headerView.findViewById(R.id.img_rlist_head_arrow);
         progressBar = headerView.findViewById(R.id.pb_rlist_head);
         hintText = headerView.findViewById(R.id.tv_rlist_head_tips);
@@ -182,7 +182,7 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
 
     private void initFooterView() {
         noMoreHint = getResources().getString(R.string.rlist_footer_nodata_default);
-        footerView = View.inflate(getContext(), R.layout.list_bottom, null);
+        footerView = View.inflate(getContext(), R.layout.rlist_bottom, null);
         footerText = footerView.findViewById(R.id.tv_rlist_bottom);
         footerProgressBar = footerView.findViewById(R.id.pb_rlist_bottom);
         footerView.measure(0, 0);
@@ -382,7 +382,7 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
     }
 
     private void initRefreshErrorView() {
-        refreshErrorView = LayoutInflater.from(getContext()).inflate(R.layout.list_header_error, null);
+        refreshErrorView = LayoutInflater.from(getContext()).inflate(R.layout.rlist_header_error, null);
         errorText = refreshErrorView.findViewById(R.id.tv_rlist_error);
         errorHint = getResources().getString(R.string.rlist_refresh_error_default);
     }
