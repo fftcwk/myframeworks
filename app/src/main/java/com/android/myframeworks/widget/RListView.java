@@ -48,7 +48,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
     private static final int LOAD_RELEASE = 13;//松开加载
     private final static int LOADING = 14;//正在加载
     private final static int LOAD_NO_MORE = 15;//没有更多数据
-    private final static int LOAD_HIDE_FOOTER = 16;//隐藏
+    private final static int LOAD_HIDE_FOOTER = 16;//隐藏Footer
 
     private final static int PULL_LOAD_MORE_DELTA = 50;
 
@@ -304,24 +304,29 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         }
     }
 
+    //show header refresh loading
     public void showRefreshingView() {
         showHeaderView();
         setHeaderState(REFRESHING);
     }
 
+    //Can listView use to refresh
     public void setCanRefresh(boolean canRefresh) {
         this.canRefresh = canRefresh;
     }
 
+    //Can listView use to load more
     public void setCanLoadMore(boolean canLoadMore) {
         this.canLoadMore = canLoadMore;
     }
 
+    //show footer nomal
     public void showReadyFooter() {
         isShowFooter = true;
         setFooterState(REFRESH_LOAD_READY);
     }
 
+    //show footer no data
     public void showNoDateFooter(String noMoreHint) {
         if(!TextUtils.isEmpty(noMoreHint)) {
             this.noMoreHint = noMoreHint;
@@ -330,6 +335,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         setFooterState(LOAD_NO_MORE);
     }
 
+    //hide footer
     public void hideFooter() {
         isShowFooter = false;
         setFooterState(LOAD_HIDE_FOOTER);
@@ -339,6 +345,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         this.noMoreHint = noMoreHint;
     }
 
+    //stop to refresh and reset refresh headerView
     public void stopRefresh() {
         if (currentState == REFRESHING) {
             currentState = REFRESH_LOAD_READY;
@@ -346,6 +353,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         }
     }
 
+    //stop to load and reset load footerView
     public void stopLoad() {
         if(currentState == LOADING) {
             currentState = REFRESH_LOAD_READY;
@@ -377,6 +385,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         errorHint = getResources().getString(R.string.rlist_refresh_error_default);
     }
 
+    //if your refreshing happen error, you can use it to show errorMsg
     public void addRefreshError(String errorMsg) {
         if(refreshErrorView == null) {
             initRefreshErrorView();
@@ -388,6 +397,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         addHeaderView(refreshErrorView);
     }
 
+    //if you show refreshing's error, you can use it to hide or remove errorMsg
     public void removeRefreshError() {
         if(refreshErrorView != null) {
             removeHeaderView(refreshErrorView);
