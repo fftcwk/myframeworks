@@ -68,6 +68,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
     private View refreshErrorView;
     private TextView errorText;
     private String errorHint;
+    private boolean isShowErrorView = false;
 
     private OnRefreshLisenter onRefreshLisenter;
     private ROnRefreshScrollListener rOnRefreshScrollListener;
@@ -387,6 +388,9 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
 
     //if your refreshing happen error, you can use it to show errorMsg
     public void addRefreshError(String errorMsg) {
+        if(isShowErrorView) {
+            return;
+        }
         if(refreshErrorView == null) {
             initRefreshErrorView();
         }
@@ -395,12 +399,14 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         }
         errorText.setText(this.errorHint);
         addHeaderView(refreshErrorView);
+        isShowErrorView = true;
     }
 
     //if you show refreshing's error, you can use it to hide or remove errorMsg
     public void removeRefreshError() {
-        if(refreshErrorView != null) {
+        if(refreshErrorView != null && isShowErrorView) {
             removeHeaderView(refreshErrorView);
+            isShowErrorView = false;
         }
     }
 

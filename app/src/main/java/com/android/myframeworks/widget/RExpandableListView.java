@@ -70,6 +70,7 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
     private View refreshErrorView;
     private TextView errorText;
     private String errorHint;
+    private boolean isShowErrorView;
 
     private OnRefreshLisenter onRefreshLisenter;
     private ROnRefreshScrollListener rOnRefreshScrollListener;
@@ -388,6 +389,9 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
 
     //if your refreshing happen error, you can use it to show errorMsg
     public void addRefreshError(String errorMsg) {
+        if(isShowErrorView) {
+            return;
+        }
         if(refreshErrorView == null) {
             initRefreshErrorView();
         }
@@ -396,12 +400,14 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
         }
         errorText.setText(this.errorHint);
         addHeaderView(refreshErrorView);
+        isShowErrorView = true;
     }
 
     //if you show refreshing's error, you can use it to hide or remove errorMsg
     public void removeRefreshError() {
-        if(refreshErrorView != null) {
+        if(refreshErrorView != null && isShowErrorView) {
             removeHeaderView(refreshErrorView);
+            isShowErrorView = false;
         }
     }
 }
