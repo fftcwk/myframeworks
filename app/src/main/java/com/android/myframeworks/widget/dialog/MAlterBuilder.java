@@ -9,9 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 /**
- * Created by cuiwenkai on 2017/12/28.
+ * Created by Kevin Choi on 2018/1/5.
  */
-
 public class MAlterBuilder {
     protected MDialogInterface anInterface;
     protected Context mContext;

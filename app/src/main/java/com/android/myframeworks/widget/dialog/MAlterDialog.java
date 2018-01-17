@@ -10,9 +10,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 /**
- * Created by cuiwenkai on 2017/12/27.
+ * Created by Kevin Choi on 2018/1/5.
  */
-
 public class MAlterDialog extends AlertDialog implements MDialogInterface<MAlterBuilder> {
     protected MAlterDialog(@NonNull Context context) {
         super(context);

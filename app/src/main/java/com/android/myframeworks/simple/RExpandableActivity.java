@@ -20,9 +20,8 @@ import java.util.Map;
 
 
 /**
- * Created by cuiwenkai on 2018/1/8.
+ * Created by Kevin Choi on 2018/1/5.
  */
-
 public class RExpandableActivity extends AppCompatActivity implements RExpandableListView.OnRefreshLisenter{
 
     private RExpandableListView rExpandableListView;
@@ -87,7 +86,7 @@ public class RExpandableActivity extends AppCompatActivity implements RExpandabl
 
     private void refreshError(boolean isShowError) {
         if(isShowError) {
-            rExpandableListView.addRefreshError(null);
+            rExpandableListView.addRefreshError("");
         } else {
             rExpandableListView.removeRefreshError();
         }
@@ -126,7 +125,7 @@ public class RExpandableActivity extends AppCompatActivity implements RExpandabl
             rExpandableListView.showReadyFooter();
         } else {
             if(isShowFooter) {
-                rExpandableListView.showNoDateFooter(null);
+                rExpandableListView.showNoMoreFooter(null);
             } else {
                 rExpandableListView.hideFooter();
             }

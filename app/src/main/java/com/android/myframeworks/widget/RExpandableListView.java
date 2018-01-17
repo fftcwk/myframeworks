@@ -1,11 +1,14 @@
 package com.android.myframeworks.widget;
 
 import android.content.Context;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.AbsListView;
@@ -16,9 +19,8 @@ import android.widget.TextView;
 
 import com.android.myframeworks.R;
 
-
 /**
- * Created by cuiwenkai on 2018/1/8.
+ * Created by Kevin Choi on 2018/1/5.
  */
 
 public class RExpandableListView extends ExpandableListView implements AbsListView.OnScrollListener{
@@ -39,6 +41,7 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
         init();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public RExpandableListView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init();
@@ -67,10 +70,13 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
     private ProgressBar footerProgressBar;
     private int footerHeight;
 
+    private View spareHeaderView;
+    private ViewGroup spareViewGroup;
+
     private View refreshErrorView;
     private TextView errorText;
     private String errorHint;
-    private boolean isShowErrorView;
+    private boolean isShowErrorView = false;
 
     private OnRefreshLisenter onRefreshLisenter;
     private ROnRefreshScrollListener rOnRefreshScrollListener;
@@ -86,6 +92,7 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
     private void init() {
         setOnScrollListener(this);
         initHeaderView();
+        initSpareHeaderView();
         initFooterView();
     }
 
@@ -307,6 +314,10 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
         }
     }
 
+    public boolean isRefresh() {
+        return currentState == REFRESHING || currentState == LOADING;
+    }
+
     //show header refresh loading
     public void showRefreshingView() {
         showHeaderView();
@@ -329,8 +340,8 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
         setFooterState(REFRESH_LOAD_READY);
     }
 
-    //show footer no data
-    public void showNoDateFooter(String noMoreHint) {
+    //show footer no more data
+    public void showNoMoreFooter(String noMoreHint) {
         if(!TextUtils.isEmpty(noMoreHint)) {
             this.noMoreHint = noMoreHint;
         }
@@ -381,6 +392,38 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
         void onLoad();
     }
 
+    private void initSpareHeaderView() {
+        spareHeaderView = View.inflate(getContext(), R.layout.rlist_head_spare, null);
+        spareViewGroup = spareHeaderView.findViewById(R.id.rlist_heade_spare_content);
+        addHeaderView(spareHeaderView);
+    }
+
+    public void addSpareView(View childView) {
+        this.addSpareView(childView, -1);
+    }
+
+    public void addSpareView(View childView, int index) {
+        int childCount = getSpareChildCount();
+        if(index > childCount) {
+            index = -1;
+        }
+        spareViewGroup.addView(childView, index);
+    }
+
+    public void removeSpareView(View childView) {
+        spareViewGroup.removeView(childView);
+    }
+
+    public void removeSpareView(int index) {
+        if(index < getSpareChildCount()) {
+            spareViewGroup.removeViewAt(index);
+        }
+    }
+
+    public int getSpareChildCount() {
+        return spareViewGroup.getChildCount();
+    }
+
     private void initRefreshErrorView() {
         refreshErrorView = LayoutInflater.from(getContext()).inflate(R.layout.rlist_header_error, null);
         errorText = refreshErrorView.findViewById(R.id.tv_rlist_error);
@@ -399,14 +442,25 @@ public class RExpandableListView extends ExpandableListView implements AbsListVi
             this.errorHint = errorMsg;
         }
         errorText.setText(this.errorHint);
-        addHeaderView(refreshErrorView);
+        this.addSpareView(refreshErrorView);
         isShowErrorView = true;
+    }
+
+    public void addRefreshError(View errorView) {
+        if(isShowErrorView) {
+            return;
+        }
+        if(errorView != null) {
+            refreshErrorView = errorView;
+            this.addSpareView(refreshErrorView);
+            isShowErrorView = true;
+        }
     }
 
     //if you show refreshing's error, you can use it to hide or remove errorMsg
     public void removeRefreshError() {
         if(refreshErrorView != null && isShowErrorView) {
-            removeHeaderView(refreshErrorView);
+            this.removeSpareView(refreshErrorView);
             isShowErrorView = false;
         }
     }

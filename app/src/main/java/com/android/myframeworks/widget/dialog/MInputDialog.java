@@ -1,6 +1,5 @@
 package com.android.myframeworks.widget.dialog;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
@@ -15,9 +14,8 @@ import android.widget.EditText;
 import com.android.myframeworks.R;
 
 /**
- * Created by cuiwenkai on 2017/12/27.
+ * Created by Kevin Choi on 2018/1/5.
  */
-
 public class MInputDialog extends AlertDialog implements MDialogInterface<MInputDialog.MInputBuilder>{
 
     protected MInputDialog(@NonNull Context context) {

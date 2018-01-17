@@ -6,9 +6,8 @@ import android.content.Context;
 import com.android.myframeworks.R;
 
 /**
- * Created by cuiwenkai on 2017/12/27.
+ * Created by Kevin Choi on 2018/1/5.
  */
-
 public class MDialogController {
 
     public static MAlterBuilder createAlterDialog(Context mContext, int mTitleId, String mMessage) {

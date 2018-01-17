@@ -13,10 +13,6 @@ import com.android.myframeworks.widget.dialog.MAlterBuilder;
 import com.android.myframeworks.widget.dialog.MDialogController;
 import com.android.myframeworks.widget.dialog.MInputDialog;
 
-/**
- * Created by cuiwenkai on 2017/12/27.
- */
-
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
 

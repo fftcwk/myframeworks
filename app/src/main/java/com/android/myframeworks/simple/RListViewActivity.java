@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by cuiwenkai on 2018/1/8.
+ * Created by Kevin Choi on 2018/1/8.
  */
 
 public class RListViewActivity extends AppCompatActivity implements RListView.OnRefreshLisenter{
@@ -78,7 +78,7 @@ public class RListViewActivity extends AppCompatActivity implements RListView.On
 
     private void refreshError(boolean isShowError) {
         if(isShowError) {
-            rListView.addRefreshError(null);
+            rListView.addRefreshError("");
         } else {
             rListView.removeRefreshError();
         }
@@ -105,7 +105,7 @@ public class RListViewActivity extends AppCompatActivity implements RListView.On
             rListView.showReadyFooter();
         } else {
             if(isShowFooter) {
-                rListView.showNoDateFooter(null);
+                rListView.showNoMoreFooter(null);
             } else {
                 rListView.hideFooter();
             }
