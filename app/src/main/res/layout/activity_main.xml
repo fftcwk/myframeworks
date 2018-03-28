@@ -28,6 +28,14 @@
             android:onClick="onClick"/>
 
         <Button
+            android:id="@+id/btn_loading"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:text="Open LoadingDialog"
+            android:onClick="onClick"/>
+
+        <Button
             android:id="@+id/btn_rlistview"
             android:layout_width="match_parent"
             android:layout_height="40dp"
@@ -41,6 +49,14 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:text="Open RExpandableListView"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/btn_slide"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:text="Open Slide"
             android:onClick="onClick"/>
 
     </LinearLayout>

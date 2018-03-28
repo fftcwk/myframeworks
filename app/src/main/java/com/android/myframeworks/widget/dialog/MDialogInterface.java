@@ -8,4 +8,5 @@ import android.support.v7.app.AlertDialog;
 public interface MDialogInterface<T extends MAlterBuilder> {
     AlertDialog createDialog(T configBuilder);
     AlertDialog showDialog(T configBuilder);
+    void dismiss(AlertDialog dialog);
 }

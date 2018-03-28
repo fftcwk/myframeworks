@@ -31,97 +31,118 @@ public class MAlterBuilder {
         this.mContext = mContext;
     }
 
-    public void setmTitle(int mTitle) {
+    public MAlterBuilder setmTitle(int mTitle) {
         this.mTitle = mContext.getString(mTitle);
+        return this;
     }
 
-    public void setmTitle(String mTitle) {
+    public MAlterBuilder setmTitle(String mTitle) {
         this.mTitle = mTitle;
+        return this;
     }
 
-    public void setmMessage(int mMessage) {
+    public MAlterBuilder setmMessage(int mMessage) {
         this.mMessage = mContext.getString(mMessage);
+        return this;
     }
 
-    public void setmMessage(String mMessage) {
+    public MAlterBuilder setmMessage(String mMessage) {
         this.mMessage = mMessage;
+        return this;
     }
 
-    public void setmContentView(int mContentViewId) {
+    public MAlterBuilder setmContentView(int mContentViewId) {
         this.mContentView = LayoutInflater.from(mContext).inflate(mContentViewId, null);
+        return this;
     }
 
-    public void setmContentView(View mContentView) {
+    public MAlterBuilder setmContentView(View mContentView) {
         this.mContentView = mContentView;
+        return this;
     }
 
-    public void setPositiveButton(int txtId, DialogInterface.OnClickListener listener) {
+    public MAlterBuilder setPositiveButton(int txtId, DialogInterface.OnClickListener listener) {
         setPositiveButton(mContext.getString(txtId), listener);
+        return this;
     }
 
-    public void setPositiveButton(String txt, DialogInterface.OnClickListener listener) {
+    public MAlterBuilder setPositiveButton(String txt, DialogInterface.OnClickListener listener) {
         ButtonInfo buttonInfo = new ButtonInfo();
         buttonInfo.text = txt;
         buttonInfo.listener = listener;
         this.positiveButton = buttonInfo;
+        return this;
     }
 
-    public void setNegativeButton(int txtId, DialogInterface.OnClickListener listener) {
+    public MAlterBuilder setNegativeButton(int txtId, DialogInterface.OnClickListener listener) {
         setNegativeButton(mContext.getString(txtId), listener);
+        return this;
     }
 
-    public void setNegativeButton(String txt,DialogInterface.OnClickListener listener) {
+    public MAlterBuilder setNegativeButton(String txt,DialogInterface.OnClickListener listener) {
         ButtonInfo buttonInfo = new ButtonInfo();
         buttonInfo.text = txt;
         buttonInfo.listener = listener;
         this.negativeButton = buttonInfo;
+        return this;
     }
 
-    public void setNeutralButton(int txtId, DialogInterface.OnClickListener listener) {
+    public MAlterBuilder setNeutralButton(int txtId, DialogInterface.OnClickListener listener) {
         setNeutralButton(mContext.getString(txtId), listener);
+        return this;
     }
 
-    public void setNeutralButton(String txt, android.content.DialogInterface.OnClickListener listener) {
+    public MAlterBuilder setNeutralButton(String txt, android.content.DialogInterface.OnClickListener listener) {
         ButtonInfo buttonInfo = new ButtonInfo();
         buttonInfo.text = txt;
         buttonInfo.listener = listener;
         this.neutralButton = buttonInfo;
+        return this;
     }
 
-    public void setmCancelable(boolean mCancelable) {
+    public MAlterBuilder setmCancelable(boolean mCancelable) {
         this.mCancelable = mCancelable;
+        return this;
     }
 
-    public void setmIsFullscreen(boolean mIsFullscreen) {
+    public MAlterBuilder setmIsFullscreen(boolean mIsFullscreen) {
         this.mIsFullscreen = mIsFullscreen;
+        return this;
     }
 
-    public void setmCanceledOnTouchOutside(boolean mCanceledOnTouchOutside) {
+    public MAlterBuilder setmCanceledOnTouchOutside(boolean mCanceledOnTouchOutside) {
         this.mCanceledOnTouchOutside = mCanceledOnTouchOutside;
+        return this;
     }
 
-    public void setmGravity(int mGravity) {
+    public MAlterBuilder setmGravity(int mGravity) {
         this.mGravity = mGravity;
+        return this;
     }
 
-    public void setmCancelListener(DialogInterface.OnCancelListener mCancelListener) {
+    public MAlterBuilder setmCancelListener(DialogInterface.OnCancelListener mCancelListener) {
         this.mCancelListener = mCancelListener;
+        return this;
     }
 
-    public void setmOnKeyListener(DialogInterface.OnKeyListener mOnKeyListener) {
+    public MAlterBuilder setmOnKeyListener(DialogInterface.OnKeyListener mOnKeyListener) {
         this.mOnKeyListener = mOnKeyListener;
+        return this;
     }
 
-    public void setmOnDismissListener(DialogInterface.OnDismissListener mOnDismissListener) {
+    public MAlterBuilder setmOnDismissListener(DialogInterface.OnDismissListener mOnDismissListener) {
         this.mOnDismissListener = mOnDismissListener;
+        return this;
     }
 
-    public void setmOnShowListener(DialogInterface.OnShowListener mOnShowListener) {
+    public MAlterBuilder setmOnShowListener(DialogInterface.OnShowListener mOnShowListener) {
         this.mOnShowListener = mOnShowListener;
+        return this;
     }
 
-    public void setAnInterface(MDialogInterface anInterface) {
+    public MAlterBuilder setAnInterface(MDialogInterface anInterface) {
         this.anInterface = anInterface;
+        return this;
     }
 
     public AlertDialog create() {
@@ -141,6 +162,15 @@ public class MAlterBuilder {
         } else {
             Log.e("error", "There is not dialog interface");
             return null;
+        }
+    }
+
+    public void dismiss(AlertDialog dialog) {
+        if(this.anInterface != null && mContext instanceof Activity
+                && !((Activity) mContext).isFinishing()) {
+            this.anInterface.dismiss(dialog);
+        } else {
+            Log.e("error", "There is not dialog interface");
         }
     }
 

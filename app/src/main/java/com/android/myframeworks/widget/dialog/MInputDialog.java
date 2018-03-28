@@ -2,8 +2,6 @@ package com.android.myframeworks.widget.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.InputFilter;
 import android.text.TextUtils;
@@ -16,24 +14,12 @@ import com.android.myframeworks.R;
 /**
  * Created by Kevin Choi on 2018/1/5.
  */
-public class MInputDialog extends AlertDialog implements MDialogInterface<MInputDialog.MInputBuilder>{
-
-    protected MInputDialog(@NonNull Context context) {
-        super(context);
-    }
-
-    protected MInputDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
-    }
-
-    protected MInputDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
+public class MInputDialog implements MDialogInterface<MInputDialog.MInputBuilder>{
 
     @Override
     public AlertDialog createDialog(MInputBuilder configBuilder) {
         Context mContext = configBuilder.mContext;
-        MInputDialog.Builder builder = new MInputDialog.Builder(mContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         configBuilder.initTitle(builder);
         View mContentView = LayoutInflater.from(mContext).inflate(R.layout.dialog_alert_input, null);
         configBuilder.setmContentView(mContentView);
@@ -51,6 +37,13 @@ public class MInputDialog extends AlertDialog implements MDialogInterface<MInput
         AlertDialog dialog = createDialog(configBuilder);
         dialog.show();
         return dialog;
+    }
+
+    @Override
+    public void dismiss(AlertDialog dialog) {
+        if(dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 
 

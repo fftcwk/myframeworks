@@ -1,9 +1,6 @@
 package com.android.myframeworks.widget.dialog;
 
-import android.content.Context;
 import android.content.DialogInterface;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.Window;
@@ -12,23 +9,11 @@ import android.view.WindowManager;
 /**
  * Created by Kevin Choi on 2018/1/5.
  */
-public class MAlterDialog extends AlertDialog implements MDialogInterface<MAlterBuilder> {
-    protected MAlterDialog(@NonNull Context context) {
-        super(context);
-    }
-
-    protected MAlterDialog(@NonNull Context context, int themeResId) {
-        super(context, themeResId);
-    }
-
-    protected MAlterDialog(@NonNull Context context, boolean cancelable, @Nullable OnCancelListener cancelListener) {
-        super(context, cancelable, cancelListener);
-    }
-
+public class MAlterDialog implements MDialogInterface<MAlterBuilder> {
 
     @Override
     public AlertDialog createDialog(MAlterBuilder configBuilder) {
-        MAlterDialog.Builder builder = new MAlterDialog.Builder(configBuilder.mContext);
+        AlertDialog.Builder builder = new AlertDialog.Builder(configBuilder.mContext);
         if (!TextUtils.isEmpty(configBuilder.mTitle)) {
             builder.setTitle(configBuilder.mTitle);
         }
@@ -111,5 +96,12 @@ public class MAlterDialog extends AlertDialog implements MDialogInterface<MAlter
         AlertDialog dialog = createDialog(configBuilder);
         dialog.show();
         return dialog;
+    }
+
+    @Override
+    public void dismiss(AlertDialog dialog) {
+        if(dialog != null && dialog.isShowing()) {
+            dialog.dismiss();
+        }
     }
 }

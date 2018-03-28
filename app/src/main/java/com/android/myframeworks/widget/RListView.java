@@ -2,7 +2,11 @@ package com.android.myframeworks.widget;
 
 import android.content.Context;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
+import android.support.v4.view.NestedScrollingChild;
+import android.support.v4.view.NestedScrollingChild2;
+import android.support.v4.view.NestedScrollingChildHelper;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -24,7 +28,7 @@ import com.android.myframeworks.R;
  * Created by Kevin Choi on 2018/1/5.
  */
 
-public class RListView extends ListView implements AbsListView.OnScrollListener{
+public class RListView extends ListView implements AbsListView.OnScrollListener, NestedScrollingChild2 {
     public RListView(Context context) {
         super(context);
         init();
@@ -55,6 +59,8 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
     private final static int LOAD_HIDE_FOOTER = 16;//隐藏Footer
 
     private final static int PULL_LOAD_MORE_DELTA = 50;
+
+    private NestedScrollingChildHelper mScrollingChildHelper;
 
     private View headerView;
     private int headerHeight;
@@ -93,6 +99,10 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         initHeaderView();
         initSpareHeaderView();
         initFooterView();
+        mScrollingChildHelper = new NestedScrollingChildHelper(this);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            setNestedScrollingEnabled(true);
+        }
     }
 
 
@@ -383,6 +393,7 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
         this.rOnRefreshScrollListener = rOnRefreshScrollListener;
     }
 
+
     public interface ROnRefreshScrollListener {
         void onRefreshScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount);
     }
@@ -463,6 +474,79 @@ public class RListView extends ListView implements AbsListView.OnScrollListener{
             this.removeSpareView(refreshErrorView);
             isShowErrorView = false;
         }
+    }
+
+    @Override
+    public void setNestedScrollingEnabled(boolean enabled) {
+        mScrollingChildHelper.setNestedScrollingEnabled(enabled);
+    }
+
+    @Override
+    public boolean isNestedScrollingEnabled() {
+        return mScrollingChildHelper.isNestedScrollingEnabled();
+    }
+
+    @Override
+    public boolean startNestedScroll(int axes) {
+        return mScrollingChildHelper.startNestedScroll(axes);
+    }
+
+    @Override
+    public void stopNestedScroll() {
+        mScrollingChildHelper.stopNestedScroll();
+    }
+
+    @Override
+    public boolean hasNestedScrollingParent() {
+        return mScrollingChildHelper.hasNestedScrollingParent();
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed,
+                                        int dyUnconsumed, int[] offsetInWindow) {
+        return mScrollingChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed,
+                dxUnconsumed, dyUnconsumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, int[] consumed, int[] offsetInWindow) {
+        return mScrollingChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedFling(float velocityX, float velocityY, boolean consumed) {
+        return mScrollingChildHelper.dispatchNestedFling(velocityX, velocityY, consumed);
+    }
+
+    @Override
+    public boolean dispatchNestedPreFling(float velocityX, float velocityY) {
+        return mScrollingChildHelper.dispatchNestedPreFling(velocityX, velocityY);
+    }
+
+    @Override
+    public boolean startNestedScroll(int axes, int type) {
+        return mScrollingChildHelper.startNestedScroll(axes, type);
+    }
+
+    @Override
+    public void stopNestedScroll(int type) {
+        mScrollingChildHelper.stopNestedScroll(type);
+    }
+
+    @Override
+    public boolean hasNestedScrollingParent(int type) {
+        return mScrollingChildHelper.hasNestedScrollingParent(type);
+    }
+
+    @Override
+    public boolean dispatchNestedScroll(int dxConsumed, int dyConsumed, int dxUnconsumed, int dyUnconsumed, @Nullable int[] offsetInWindow, int type) {
+        return mScrollingChildHelper.dispatchNestedScroll(dxConsumed, dyConsumed,
+                dxUnconsumed, dyUnconsumed, offsetInWindow);
+    }
+
+    @Override
+    public boolean dispatchNestedPreScroll(int dx, int dy, @Nullable int[] consumed, @Nullable int[] offsetInWindow, int type) {
+        return mScrollingChildHelper.dispatchNestedPreScroll(dx, dy, consumed, offsetInWindow);
     }
 
 }

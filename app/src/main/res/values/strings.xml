@@ -2,6 +2,7 @@
     <string name="app_name">myframeworks</string>
     <string name="make_sure">确定</string>
     <string name="cancel">取消</string>
+    <string name="loading">正在加载...</string>
 
     <string name="rlist_head_ready">向下拖动进行刷新</string>
     <string name="rlist_head_release">松开进行刷新</string>

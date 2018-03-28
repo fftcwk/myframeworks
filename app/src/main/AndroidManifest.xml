@@ -19,6 +19,8 @@
 
         <activity android:name=".simple.RListViewActivity"></activity>
         <activity android:name=".simple.RExpandableActivity"></activity>
+        <activity android:name=".simple.SlideTestActivity"></activity>
+        <activity android:name=".simple.SlideTestActivity2"></activity>
     </application>
 
 </manifest>
